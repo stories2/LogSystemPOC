@@ -1,0 +1,26 @@
+{
+  "name": "logsystempoc",
+  "version": "1.0.0",
+  "description": "POC the log system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stories2/LogSystemPOC.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stories2/LogSystemPOC/issues"
+  },
+  "homepage": "https://github.com/stories2/LogSystemPOC#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
