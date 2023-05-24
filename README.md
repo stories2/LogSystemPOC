@@ -1,2 +1,11 @@
 # LogSystemPOC
+
 POC the log system
+
+# Objective
+
+|                                senario                                 |              required grouping field              |                                                                                         description                                                                                         |
+| :--------------------------------------------------------------------: | :-----------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| Recognize which platform is the most crash issue that the client uses. |             `user-agent`, `trace-id`              |                 Grouping platform using `user-agent` keyword and check the `trace-id` keyword printed twice(req, res) or not. If it only shows once, that means it crashed.                 |
+|      Figure out which part having trouble with a specific client.      | `trace-id`, `session`, `service-id`, `feature-id` | First, filtering a specific client using `session`. Grouping the `trace-id` for travel the process. And find out which feature crashed in which service using `feature-id` and `service-id` |
+|             Figure out which service's instance is failed              |       `trace-id`, `service-id`, `hostname`        | If `trace-id` is only printed once, then it means crashed. Group by `service-id` to find which service is mostly crashed. And then filtering using the `hostname` to specify the instance.  |
