@@ -24,3 +24,47 @@ POC the log system
 | Auth0   |        |       |          |       |     |
 | OneLogin|        |       |          |       |     |
 | Firebase|        |       |          |       |     |
+
+#### ChatGPT Help
+
+- Me
+
+```
+Hi, i have a question. In my company is planning to integrate “ms sso”, “ms AD” and “ms oauth” to our service.
+So, i have to make some POC. 
+Could u recommend me how to do that things or 3rd party services?
+```
+
+- ChatGPT
+
+```
+Certainly! Integrating "MS SSO" (Microsoft Single Sign-On), "MS AD" (Microsoft Active Directory), and "MS OAuth" (Microsoft's implementation of the OAuth protocol) can provide a seamless authentication and authorization experience for your service. Here are some recommendations on how to approach the integration and potential third-party services you can consider:
+
+1. Microsoft SSO (Single Sign-On): Microsoft Azure Active Directory (Azure AD) is a popular choice for implementing SSO. It provides a robust identity and access management solution with support for various authentication protocols such as SAML and OpenID Connect. You can explore Azure AD documentation and guides to understand the integration process.
+
+2. Microsoft AD Integration: If your organization already has an on-premises Active Directory infrastructure, you can leverage Azure AD Connect to synchronize identities between your on-premises AD and Azure AD. This integration allows you to extend your existing AD infrastructure to the cloud, enabling seamless authentication and user management across both environments.
+
+3. Microsoft OAuth: OAuth is an open standard for authorization and is widely used for secure API authentication. Microsoft provides Azure Active Directory (Azure AD) as an OAuth provider. You can register your application with Azure AD to obtain the necessary client credentials and configure the OAuth flow for your service.
+
+4. Third-Party Services: If you prefer not to handle the complexities of integration yourself, there are third-party identity providers and authentication services available. Some popular options include Okta, Auth0, and OneLogin. These services provide comprehensive identity management solutions, including SSO, OAuth support, and integration with Microsoft technologies.
+
+When conducting your POC, consider the specific requirements of your service, the existing infrastructure, and the level of control and customization needed. Microsoft's official documentation and the documentation of third-party services can guide you through the integration process step-by-step. Additionally, reaching out to Microsoft support or third-party service providers for assistance can be helpful if you encounter any challenges.
+```
+
+- Me
+
+```
+Is the firebase can do it too?
+```
+
+- ChatGPT
+
+```
+Yes, Firebase can also be used for authentication and authorization purposes in your service. Firebase Authentication is a service provided by Google's Firebase platform that offers a secure and easy-to-use authentication system for web, mobile, and server-side applications. While Firebase Authentication does not directly integrate with "MS SSO" or "MS AD" as mentioned in your question, it does provide its own authentication mechanisms and can work independently or alongside other identity providers.
+
+With Firebase Authentication, you can support various authentication methods such as email/password, social logins (Google, Facebook, etc.), phone number verification, and more. Firebase also supports OAuth authentication, allowing you to integrate with popular OAuth providers like Microsoft, Google, and others.
+
+If your intention is to solely rely on Firebase Authentication and not specifically integrate with "MS SSO" or "MS AD," Firebase can be a suitable option. However, if you require direct integration with Microsoft technologies and want to leverage existing "MS SSO" or "MS AD" implementations, using Microsoft's solutions like Azure AD would be more appropriate.
+
+Consider your specific requirements, the existing infrastructure, and the level of integration you need while deciding whether to use Firebase or Microsoft's solutions for authentication and authorization in your service.
+```
