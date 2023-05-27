@@ -13,14 +13,23 @@ POC the log system
 ## Demo feature
 
 - MS SSO  (Microsoft Single Sign-On)
+
 	•	Azure AD Single Sign-On documentation: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/what-is-single-sign-on
+	
 	•	Azure AD Single Sign-On with SAML: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-single-sign-on-saml
+	
 - MS AD   (Microsoft Azure Active Directory)
+
 	•	Azure Active Directory documentation: https://docs.microsoft.com/en-us/azure/active-directory/
+	
 	•	Azure AD developer documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/
+	
 - MS Oauth(Microsoft's implementation of the Oauth protocol)
+
 	•	Microsoft identity platform documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-overview
+	
 	•	Microsoft identity platform and OAuth: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
+	
 
 ### 3rd-party services
 
