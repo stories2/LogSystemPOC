@@ -13,17 +13,23 @@ POC the log system
 ## Demo feature
 
 - MS SSO  (Microsoft Single Sign-On)
-- MS AD   (Microsoft Active Directory)
+	•	Azure AD Single Sign-On documentation: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/what-is-single-sign-on
+	•	Azure AD Single Sign-On with SAML: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-single-sign-on-saml
+- MS AD   (Microsoft Azure Active Directory)
+	•	Azure Active Directory documentation: https://docs.microsoft.com/en-us/azure/active-directory/
+	•	Azure AD developer documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/
 - MS Oauth(Microsoft's implementation of the Oauth protocol)
+	•	Microsoft identity platform documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-overview
+	•	Microsoft identity platform and OAuth: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
 
 ### 3rd-party services
 
 | name    | MS SSO | MS AD | MS OAuth | Price | ETC |
 |:-------:|:------:|:-----:|:--------:|:-----:|:---:|
-| Okta    |        |       |          |       |     |
-| Auth0   |        |       |          |       |     |
-| OneLogin|        |       |          |       |     |
-| Firebase|        |       |          |       |     |
+| Okta    |        |       |          |       | Doc: https://developer.okta.com/docs/    |
+| Auth0   |        |       |          |       | Doc: https://auth0.com/docs/    |
+| OneLogin|        |       |          |       | Doc: https://developers.onelogin.com/    |
+| Firebase|        |       |          |       | Doc(Auth): https://firebase.google.com/docs/auth, Doc(OAuth): https://firebase.google.com/docs/auth/web/oauth    |
 
 #### ChatGPT Help
 
