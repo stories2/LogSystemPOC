@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require("uuid");
 const os = require("os");
 const { StatusCodes } = require("http-status-codes");
 const hostname = os.hostname();
+const uaParser = require("ua-parser-js");
 require("dotenv").config();
 
 const crypto = require("crypto");
@@ -21,8 +22,9 @@ const successRedirectUrl = "/";
 
 const E_NOT_AUTHORIZED = "e_not_authorized";
 
-const HEADER_X_FEATURE_ID = "X-Feature-ID";
-const HEADER_X_REQUEST_ID = "X-Request-ID";
+const HEADER_X_FEATURE_ID = "x-feature-id";
+const HEADER_X_REQUEST_ID = "x-request-id";
+const HEADER_USER_AGENT = "user-agent";
 
 const logger = winston.createLogger({
   level: "debug",
@@ -56,6 +58,7 @@ function getReqContext(req) {
   return {
     featureId: req.headers[HEADER_X_FEATURE_ID],
     traceId: req.headers[HEADER_X_REQUEST_ID],
+    userAgent: uaParser(req.headers[HEADER_USER_AGENT]),
     session: req.user
       ? crypto.createHash("sha256").update(req.user.id).digest("hex")
       : undefined,
