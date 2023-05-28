@@ -86,7 +86,11 @@ app.use((req, res, next) => {
 /**
  * Load front-end page
  */
-app.use(express.static("dist"));
+app.use(
+  express.static("./", {
+    index: "index.html",
+  })
+);
 
 /**
  * Setup session middleware
