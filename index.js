@@ -67,7 +67,10 @@ function getReqContext(req) {
  * https://www.nginx.com/blog/application-tracing-nginx-plus/
  */
 app.use((req, res, next) => {
-  if (!req.header(HEADER_X_REQUEST_ID))
+  if (
+    !req.header(HEADER_X_REQUEST_ID) ||
+    req.headers[HEADER_X_REQUEST_ID] === ""
+  )
     req.headers[HEADER_X_REQUEST_ID] = uuidv4();
   res.on("finish", () =>
     logger.info({
@@ -117,6 +120,14 @@ passport.use(
     }
   )
 );
+
+passport.serializeUser((user, next) => {
+  next(null, user);
+});
+
+passport.deserializeUser((obj, next) => {
+  next(null, obj);
+});
 
 app.get(
   `/oauth2/${apiVer}/google`,
