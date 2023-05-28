@@ -21,7 +21,7 @@
   "engines": {
     "node": "20.x"
   },
-  "heroku-run-build-script": true,
+  "heroku-run-build-script": false,
   "homepage": "https://github.com/stories2/LogSystemPOC#readme",
   "dependencies": {
     "dotenv": "^16.0.3",
