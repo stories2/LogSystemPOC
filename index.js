@@ -9,6 +9,8 @@ const { StatusCodes } = require("http-status-codes");
 const hostname = os.hostname();
 require("dotenv").config();
 
+const crypto = require("crypto");
+
 const apiVer = "v1";
 
 const app = express();
@@ -54,34 +56,11 @@ function getReqContext(req) {
   return {
     featureId: req.headers[HEADER_X_FEATURE_ID],
     traceId: req.headers[HEADER_X_REQUEST_ID],
+    session: req.user
+      ? crypto.createHash("sha256").update(req.user.id).digest("hex")
+      : undefined,
   };
 }
-
-/**
- * @summary Set trace id to tracking log messages.
- * @param {req}
- * @param {res}
- * @param {next}
- * It will set trace id to req.headers.X-Request-ID if it is not exist. Normally it sets by nginx.
- * And also it will write end of response.
- * https://www.nginx.com/blog/application-tracing-nginx-plus/
- */
-app.use((req, res, next) => {
-  if (!req.headers[HEADER_X_REQUEST_ID])
-    req.headers[HEADER_X_REQUEST_ID] = uuidv4();
-  res.on("finish", () =>
-    logger.info({
-      ...getReqContext(req),
-    })
-  );
-  res.on("error", (err) =>
-    logger.error({
-      ...getReqContext(req),
-      err: err.message,
-    })
-  );
-  next();
-});
 
 /**
  * Load front-end page
@@ -124,6 +103,32 @@ passport.serializeUser((user, next) => {
 
 passport.deserializeUser((obj, next) => {
   next(null, obj);
+});
+
+/**
+ * @summary Set trace id to tracking log messages.
+ * @param {req}
+ * @param {res}
+ * @param {next}
+ * It will set trace id to req.headers.X-Request-ID if it is not exist. Normally it sets by nginx.
+ * And also it will write end of response.
+ * https://www.nginx.com/blog/application-tracing-nginx-plus/
+ */
+app.use((req, res, next) => {
+  if (!req.headers[HEADER_X_REQUEST_ID])
+    req.headers[HEADER_X_REQUEST_ID] = uuidv4();
+  res.on("finish", () =>
+    logger.info({
+      ...getReqContext(req),
+    })
+  );
+  res.on("error", (err) =>
+    logger.error({
+      ...getReqContext(req),
+      err: err.message,
+    })
+  );
+  next();
 });
 
 app.get(
