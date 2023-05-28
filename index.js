@@ -67,6 +67,7 @@ function getReqContext(req) {
  * https://www.nginx.com/blog/application-tracing-nginx-plus/
  */
 app.use((req, res, next) => {
+  console.log("xreq", req.headers[HEADER_X_REQUEST_ID]);
   if (
     !req.header(HEADER_X_REQUEST_ID) ||
     req.headers[HEADER_X_REQUEST_ID] === ""
