@@ -14,7 +14,7 @@ const apiVer = "v1";
 const app = express();
 const port = process.env.PORT || 3000;
 
-const failureRedirectUrl = "/fail";
+const failureRedirectUrl = "/fail.html";
 const successRedirectUrl = "/";
 
 const E_NOT_AUTHORIZED = "e_not_authorized";
@@ -184,9 +184,8 @@ app.get(
   (req, res) => {
     logger.debug({
       ...getReqContext(req),
-      data: JSON.stringify(req.user),
     });
-    res.send("ok");
+    res.send(req.user);
   }
 );
 
