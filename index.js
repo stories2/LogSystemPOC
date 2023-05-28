@@ -115,6 +115,12 @@ passport.use(
 );
 
 app.get(
+  `/oauth2/${apiVer}/google`,
+  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API006"),
+  passport.authenticate("google", { scope: ["profile"] })
+);
+
+app.get(
   `/oauth2/${apiVer}/authorize/callback`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API001"),
   passport.authenticate(["google"], {
