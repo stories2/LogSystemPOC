@@ -19,6 +19,9 @@ const successRedirectUrl = "/#/";
 
 const E_NOT_AUTHORIZED = "e_not_authorized";
 
+const HEADER_X_FEATURE_ID = "X-Feature-ID";
+const HEADER_X_REQUEST_ID = "X-Request-ID";
+
 const logger = winston.createLogger({
   level: "debug",
   format: winston.format.combine(
@@ -35,9 +38,9 @@ const logger = winston.createLogger({
  * @param {string} featureId Unique feature id based on route path
  */
 function setFeatureIdToHeaderMiddleware(req, next, featureId) {
-  req.headers["X-Feature-ID"] = featureId;
+  req.headers[HEADER_X_FEATURE_ID] = featureId;
   logger.info({
-    traceId: req.headers["X-Request-ID"],
+    traceId: req.headers[HEADER_X_REQUEST_ID],
     featureId,
   });
   next();
@@ -49,8 +52,8 @@ function setFeatureIdToHeaderMiddleware(req, next, featureId) {
  */
 function getReqContext(req) {
   return {
-    featureId: req.headers["X-Feature-ID"],
-    traceId: req.headers["X-Request-ID"],
+    featureId: req.headers[HEADER_X_FEATURE_ID],
+    traceId: req.headers[HEADER_X_REQUEST_ID],
   };
 }
 
@@ -64,7 +67,8 @@ function getReqContext(req) {
  * https://www.nginx.com/blog/application-tracing-nginx-plus/
  */
 app.use((req, res, next) => {
-  if (!req.header("X-Request-ID")) req.headers["X-Request-ID"] = uuidv4();
+  if (!req.header(HEADER_X_REQUEST_ID))
+    req.headers[HEADER_X_REQUEST_ID] = uuidv4();
   res.on("finish", () =>
     logger.info({
       ...getReqContext(req),
@@ -165,8 +169,17 @@ app.route(`/oauth2/${apiVer}/logout`).all(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API004"),
   ensureLoggedIn,
   (req, res) => {
-    res.send("ok");
+    req.logOut();
+    req.session.destroy();
+    res.redirect(successRedirectUrl);
   }
+);
+
+app.post(
+  `/foo/${apiVer}/click`,
+  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API005"),
+  ensureLoggedIn,
+  (req, res) => res.send("ok")
 );
 
 app.use(
