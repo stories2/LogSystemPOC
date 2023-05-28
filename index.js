@@ -14,8 +14,8 @@ const apiVer = "v1";
 const app = express();
 const port = process.env.PORT || 3000;
 
-const failureRedirectUrl = "/#/login";
-const successRedirectUrl = "/#/";
+const failureRedirectUrl = "/fail";
+const successRedirectUrl = "/";
 
 const E_NOT_AUTHORIZED = "e_not_authorized";
 
@@ -182,6 +182,10 @@ app.get(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API003"),
   ensureLoggedIn,
   (req, res) => {
+    logger.debug({
+      ...getReqContext(req),
+      data: JSON.stringify(req.user),
+    });
     res.send("ok");
   }
 );
@@ -190,9 +194,15 @@ app.route(`/oauth2/${apiVer}/logout`).all(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API004"),
   ensureLoggedIn,
   (req, res) => {
-    req.logOut();
-    req.session.destroy();
-    res.redirect(successRedirectUrl);
+    req.logOut({}, (err) => {
+      if (err)
+        logger.error({
+          ...getReqContext(req),
+          error: err.message,
+        });
+      req.session.destroy();
+      res.redirect(successRedirectUrl);
+    });
   }
 );
 
