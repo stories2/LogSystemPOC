@@ -67,12 +67,21 @@ function getReqContext(req) {
  * https://www.nginx.com/blog/application-tracing-nginx-plus/
  */
 app.use((req, res, next) => {
-  console.log("xreq", req.headers[HEADER_X_REQUEST_ID]);
+  console.log(
+    "b xreq",
+    req.headers[HEADER_X_REQUEST_ID],
+    typeof req.headers[HEADER_X_REQUEST_ID]
+  );
   if (
     !req.header(HEADER_X_REQUEST_ID) ||
     req.headers[HEADER_X_REQUEST_ID] === ""
   )
     req.headers[HEADER_X_REQUEST_ID] = uuidv4();
+  console.log(
+    "a xreq",
+    req.headers[HEADER_X_REQUEST_ID],
+    typeof req.headers[HEADER_X_REQUEST_ID]
+  );
   res.on("finish", () =>
     logger.info({
       ...getReqContext(req),
