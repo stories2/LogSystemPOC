@@ -26,6 +26,8 @@ const HEADER_X_FEATURE_ID = "x-feature-id";
 const HEADER_X_REQUEST_ID = "x-request-id";
 const HEADER_USER_AGENT = "user-agent";
 
+const SUPPORT_PROVIDER = ["google"];
+
 const logger = winston.createLogger({
   level: "debug",
   format: winston.format.combine(
@@ -143,7 +145,7 @@ app.get(
 app.get(
   `/oauth2/${apiVer}/authorize/callback`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API001"),
-  passport.authenticate(["google"], {
+  passport.authenticate(SUPPORT_PROVIDER, {
     failureRedirect: failureRedirectUrl,
     successRedirect: successRedirectUrl,
   }),
@@ -155,7 +157,7 @@ app.get(
 app.post(
   `/oauth2/${apiVer}/authorize/callback`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API002"),
-  passport.authenticate(["google"], {
+  passport.authenticate(SUPPORT_PROVIDER, {
     failureRedirect: failureRedirectUrl,
     successRedirect: successRedirectUrl,
   }),
