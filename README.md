@@ -54,7 +54,12 @@ POC the log system
 | Firebase |  O  |      O      |    O     | https://firebase.google.com/pricing?hl=ko (Free for 50,000 MAU / Free for 50 MAU SAML or OIDC) | Doc(Auth): https://firebase.google.com/docs/auth, Doc(OAuth): https://firebase.google.com/docs/auth/web/oauth , Ref: https://firebase.google.com/docs/auth/web/saml?hl=ko , https://firebase.google.com/docs/auth/web/microsoft-oauth?hl=ko |
 
 Okta and auth0
+
 - https://www.okta.com/okta-and-auth0/
+
+### How to integrate SSO using Okta
+
+Check this [link](./OKTA_INTEGRATION.md).
 
 #### ChatGPT Help
 
