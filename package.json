@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "start": "./node_modules/.bin/pm2 start index.js",
+    "start": "node index.js",
+    "heroku-postbuild": "cd hello-world-vite && npm i && npm run build",
     "build": "node front-end-builder.js"
   },
   "repository": {
