@@ -26,33 +26,32 @@ POC the log system
 
 ### Documents
 
-- MS SSO  (Microsoft Single Sign-On)
+- MS SSO (Microsoft Single Sign-On)
 
-	•	Azure AD Single Sign-On documentation: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/what-is-single-sign-on
-	
-	•	Azure AD Single Sign-On with SAML: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-single-sign-on-saml
-	
-- MS AD   (Microsoft Azure Active Directory)
+  • Azure AD Single Sign-On documentation: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/what-is-single-sign-on
 
-	•	Azure Active Directory documentation: https://docs.microsoft.com/en-us/azure/active-directory/
-	
-	•	Azure AD developer documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/
-	
+  • Azure AD Single Sign-On with SAML: https://docs.microsoft.com/en-us/azure/active-directory/manage-apps/configure-single-sign-on-saml
+
+- MS AD (Microsoft Azure Active Directory)
+
+  • Azure Active Directory documentation: https://docs.microsoft.com/en-us/azure/active-directory/
+
+  • Azure AD developer documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/
+
 - MS Oauth(Microsoft's implementation of the Oauth protocol)
 
-	•	Microsoft identity platform documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-overview
-	
-	•	Microsoft identity platform and OAuth: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
-	
+  • Microsoft identity platform documentation: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-overview
+
+  • Microsoft identity platform and OAuth: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-protocols-oidc
 
 ### 3rd-party services
 
-| name    | MS SSO | MS AD | MS OAuth | Price | ETC |
-|:-------:|:------:|:-----:|:--------:|:-----:|:---:|
-| Okta    |        |       |          |       | Doc: https://developer.okta.com/docs/    |
-| Auth0   |        |       |          |       | Doc: https://auth0.com/docs/    |
-| OneLogin|        |       |          |       | Doc: https://developers.onelogin.com/    |
-| Firebase|        |       |          |       | Doc(Auth): https://firebase.google.com/docs/auth, Doc(OAuth): https://firebase.google.com/docs/auth/web/oauth    |
+|   name   | SSO | MS Azure AD | MS OAuth |                                             Price                                              |                                                                                                                     ETC                                                                                                                     |
+| :------: | :-: | :---------: | :------: | :--------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|   Okta   |  O  |      O      |    ?     |                     https://www.okta.com/pricing/ ($2 user / month -- SSO)                     |                    Doc: https://developer.okta.com/docs/guides/quickstart/main/ , Ref: https://www.okta.com/partners/microsoft/ , https://help.okta.com/en-us/Content/Topics/Provisioning/azure/azure-integrate-main.htm                    |
+|  Auth0   |  O  |      O      |    ?     |      same as Okta https://auth0.com/pricing (If MAU is 7,000+ then, need to contact them)      |                                             Doc: https://auth0.com/docs/ , Ref: https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers/azure-active-directory/v2                                              |
+| OneLogin |  O  |      O      |    ?     |               https://www.onelogin.com/product/pricing ($2 user / month -- SSO)                |                                                                Doc: https://developers.onelogin.com/ , Ref: https://www.onelogin.com/partners/technology-partners/office-365                                                                |
+| Firebase |  O  |      O      |    O     | https://firebase.google.com/pricing?hl=ko (Free for 50,000 MAU / Free for 50 MAU SAML or OIDC) | Doc(Auth): https://firebase.google.com/docs/auth, Doc(OAuth): https://firebase.google.com/docs/auth/web/oauth , Ref: https://firebase.google.com/docs/auth/web/saml?hl=ko , https://firebase.google.com/docs/auth/web/microsoft-oauth?hl=ko |
 
 #### ChatGPT Help
 
@@ -60,7 +59,7 @@ POC the log system
 
 ```
 Hi, i have a question. In my company is planning to integrate “ms sso”, “ms AD” and “ms oauth” to our service.
-So, i have to make some POC. 
+So, i have to make some POC.
 Could u recommend me how to do that things or 3rd party services?
 ```
 
