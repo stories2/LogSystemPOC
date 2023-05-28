@@ -53,6 +53,9 @@ POC the log system
 | OneLogin |  O  |      O      |    ?     |               https://www.onelogin.com/product/pricing ($2 user / month -- SSO)                |                                                                Doc: https://developers.onelogin.com/ , Ref: https://www.onelogin.com/partners/technology-partners/office-365                                                                |
 | Firebase |  O  |      O      |    O     | https://firebase.google.com/pricing?hl=ko (Free for 50,000 MAU / Free for 50 MAU SAML or OIDC) | Doc(Auth): https://firebase.google.com/docs/auth, Doc(OAuth): https://firebase.google.com/docs/auth/web/oauth , Ref: https://firebase.google.com/docs/auth/web/saml?hl=ko , https://firebase.google.com/docs/auth/web/microsoft-oauth?hl=ko |
 
+Okta and auth0
+- https://www.okta.com/okta-and-auth0/
+
 #### ChatGPT Help
 
 - Me
