@@ -28,7 +28,7 @@ const HEADER_X_REQUEST_ID = "x-request-id";
 const HEADER_USER_AGENT = "user-agent";
 
 const SUPPORT_PROVIDER = ["google", "microsoft"];
-const USER_PERMISSION_SCOPE = ["profile"];
+const USER_PERMISSION_SCOPE = ["profile", "openid"];
 
 const logger = winston.createLogger({
   level: "debug",
@@ -170,7 +170,10 @@ app.get(
 app.get(
   `/oauth2/${apiVer}/microsoft`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API007"),
-  passport.authenticate("microsoft", { prompt: "select_account" })
+  passport.authenticate("microsoft", {
+    prompt: "select_account",
+    scope: USER_PERMISSION_SCOPE,
+  })
 );
 
 app.get(
