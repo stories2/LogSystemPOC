@@ -204,6 +204,17 @@ app.get(
   }
 );
 
+app.get(
+  `/oauth2/${apiVer}/myinfo`,
+  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API003"),
+  (req, res) => {
+    logger.debug({
+      ...getReqContext(req),
+    });
+    res.send(req.user);
+  }
+);
+
 /**
  *
  * @param {*} req check req.user exist or redirect to login page
@@ -221,18 +232,6 @@ function ensureLoggedIn(req, res, next) {
   });
   return res.redirect(failureRedirectUrl);
 }
-
-app.get(
-  `/oauth2/${apiVer}/myinfo`,
-  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API003"),
-  ensureLoggedIn,
-  (req, res) => {
-    logger.debug({
-      ...getReqContext(req),
-    });
-    res.send(req.user);
-  }
-);
 
 app.route(`/oauth2/${apiVer}/logout`).all(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API004"),
