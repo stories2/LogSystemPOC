@@ -148,13 +148,14 @@
             .then((data) => {
               if (data.status) {
                 peekabooBtn.setAttribute("src", "./peekaboo-min.PNG");
-              } else {
-                sessionInfo.innerHTML = JSON.stringify({
-                  message: "Do the sign-in first!!!",
-                });
               }
             })
-            .catch((err) => handleAxiosError(err));
+            .catch((err) => {
+              handleAxiosError(err);
+              sessionInfo.innerHTML = JSON.stringify({
+                message: "Permission denied!!!(ᗒᗣᗕ)՞",
+              });
+            });
         };
       };
     </script>
