@@ -74,7 +74,7 @@ function getReqContext(req) {
  * Load front-end page
  */
 app.use(
-  express.static("./", {
+  express.static("static", {
     index: "index.html",
   })
 );
