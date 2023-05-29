@@ -14,11 +14,62 @@
     <title>Log System Demo</title>
   </head>
   <body>
-    <div class="container text-center">
+    <div class="container text-center" style="margin-top: 25vh">
       <div class="row">
-        <div class="col">Column</div>
-        <div class="col">Column</div>
-        <div class="col">Column</div>
+        <div class="col-md-2 col-lg-4 col-12"></div>
+        <div class="col-md-8 col-lg-4 col-12">Column</div>
+        <div class="col-md-2 col-lg-4 col-12"></div>
+      </div>
+    </div>
+
+    <!-- Microsoft Sign-in -->
+    <div class="container text-center" style="margin-top: 15px">
+      <div class="row">
+        <div class="col-md-2 col-lg-4 col-12"></div>
+        <div class="col-md-8 col-lg-4 col-12">
+          <div class="d-grid">
+            <a class="btn btn-primary" href="/oauth2/v1/microsoft" role="button"
+              >Sign-in with Microsoft</a
+            >
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-4 col-12"></div>
+      </div>
+    </div>
+
+    <!-- Google Sign-in -->
+    <div class="container text-center" style="margin-top: 15px">
+      <div class="row">
+        <div class="col-md-2 col-lg-4 col-12"></div>
+        <div class="col-md-8 col-lg-4 col-12">
+          <div class="d-grid">
+            <a class="btn btn-primary" href="/oauth2/v1/google" role="button"
+              >Sign-in with Google
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-4 col-12"></div>
+      </div>
+    </div>
+
+    <!-- Sign-in info -->
+    <div class="container text-center" style="margin-top: 15px">
+      <div class="row">
+        <div class="col-md-2 col-lg-4 col-12"></div>
+        <div class="col-md-8 col-lg-4 col-12">
+          <h3>Session info</h3>
+          <div class="d-grid">
+            <code>
+              <pre style="text-align: left">
+{
+  "message": "It will be shown when you signed-in."
+}
+            </pre
+              >
+            </code>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-4 col-12"></div>
       </div>
     </div>
     <script
