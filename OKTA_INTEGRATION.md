@@ -3,12 +3,17 @@
 Integration target
 
 - Google
+- Microsoft
 
 ## Demo
 
+![ms](./img/screencapture-account-live-Consent-Update-2023-05-29-12_59_44.png)
+
+![google](./img/screencapture-accounts-google-o-oauth2-v2-auth-oauthchooseaccount-2023-05-29-13_09_57.png)
+
 - https://okta.gapmoe.net
 
-## Getting started
+## Getting started (Google)
 
 Reference [link](https://developer.okta.com/docs/guides/sign-into-web-app-redirect/node-express/main/)
 
@@ -42,3 +47,19 @@ Reference [link](https://developer.okta.com/docs/guides/sign-into-web-app-redire
 9. Back to the Okta console. If you insert them, the setup is done.
 
 ![done](./img/screencapture-dev-97554177-admin-okta-admin-access-identity-providers-edit-0oa9qey96w6KNilej5d7-2023-05-28-16_52_48.png)
+
+## Getting started (Microsoft)
+
+Reference [link](https://learn.microsoft.com/en-us/graph/tutorials/javascript?tabs=aad&tutorial-step=1)
+
+1. Add microsoft IdP from Okta. Same as Google IdP integration.
+
+2. Go to azure portal. Move to `Azure Active Directory` > `Application` > `App registerations` and create new app.
+
+![app](./img/screencapture-entra-microsoft-2023-05-29-12_25_25.png)
+
+3. Go to `Credentials and Password` > `Client secret` tab. And create new secret key.
+
+![secret](./img/screencapture-entra-microsoft-2023-05-29-12_39_18.png)
+
+4. Type `client id` and `client secret` to Okta input form.
