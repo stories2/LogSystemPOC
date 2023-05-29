@@ -140,8 +140,13 @@ passport.deserializeUser((obj, next) => {
  * https://www.nginx.com/blog/application-tracing-nginx-plus/
  */
 app.use((req, res, next) => {
+  // From heroku request id
+  if (req.headers["request_id"])
+    req.headers[HEADER_X_REQUEST_ID] = req.headers["request_id"];
+
   if (!req.headers[HEADER_X_REQUEST_ID])
     req.headers[HEADER_X_REQUEST_ID] = uuidv4();
+
   res.on("finish", () =>
     logger.info({
       ...getReqContext(req),
