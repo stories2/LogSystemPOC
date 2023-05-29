@@ -22,6 +22,7 @@ const failureRedirectUrl = "/fail.html";
 const successRedirectUrl = "/";
 
 const E_NOT_AUTHORIZED = "e_not_authorized";
+const E_TEST_ERROR = "e_test_error";
 
 const HEADER_X_FEATURE_ID = "x-feature-id";
 const HEADER_X_REQUEST_ID = "x-request-id";
@@ -189,7 +190,9 @@ app.get(
     successRedirect: successRedirectUrl,
   }),
   (req, res) => {
-    res.send("ok");
+    res.send({
+      status: true,
+    });
   }
 );
 app.get(
@@ -200,7 +203,9 @@ app.get(
     successRedirect: successRedirectUrl,
   }),
   (req, res) => {
-    res.send("ok");
+    res.send({
+      status: true,
+    });
   }
 );
 
@@ -253,7 +258,18 @@ app.post(
   `/foo/${apiVer}/click`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API005"),
   ensureLoggedIn,
-  (req, res) => res.send("ok")
+  (req, res) =>
+    res.send({
+      status: true,
+    })
+);
+
+app.get(
+  `/foo/${apiVer}/crash`,
+  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API008"),
+  (req, res) => {
+    throw new Error(E_TEST_ERROR);
+  }
 );
 
 app.use(
@@ -263,6 +279,21 @@ app.use(
     res.send();
   }
 );
+
+/**
+ * @summary Handling error referenced by official express doc
+ * https://expressjs.com/en/guide/error-handling.html
+ */
+app.use((err, req, res, next) => {
+  logger.error({
+    ...getReqContext(req),
+    error: err.message,
+    stack: err.stack,
+  });
+  return res.status(500).send({
+    status: false,
+  });
+});
 
 app.listen(port, () => {
   logger.info({
