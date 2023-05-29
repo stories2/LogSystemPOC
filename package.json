@@ -30,6 +30,7 @@
     "http-status-codes": "^2.2.0",
     "passport": "^0.6.0",
     "passport-google-oauth20": "^2.0.0",
+    "passport-microsoft": "^1.0.0",
     "ua-parser-js": "^1.0.35",
     "uuid": "^9.0.0",
     "winston": "^3.9.0"
