@@ -27,7 +27,7 @@ const HEADER_X_FEATURE_ID = "x-feature-id";
 const HEADER_X_REQUEST_ID = "x-request-id";
 const HEADER_USER_AGENT = "user-agent";
 
-const SUPPORT_PROVIDER = ["google", "microsoft"];
+const SUPPORT_PROVIDER = ["microsoft", "google"];
 const USER_PERMISSION_SCOPE = ["profile", "openid"];
 
 const logger = winston.createLogger({
