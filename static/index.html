@@ -19,8 +19,9 @@
         <div class="col-md-2 col-lg-4 col-12"></div>
         <div class="col-md-8 col-lg-4 col-12">
           <img
-            src="./asdfasdfaf.jpg"
+            src="./idle.PNG"
             style="max-width: 200px; width: 100%; height: auto"
+            id="peekaboo-btn"
           />
         </div>
         <div class="col-md-2 col-lg-4 col-12"></div>
@@ -89,7 +90,10 @@
           <h3>Session info</h3>
           <div class="d-grid">
             <code>
-              <pre style="text-align: left; white-space: pre-wrap">
+              <pre
+                style="text-align: left; white-space: pre-wrap"
+                id="session-info"
+              >
 {
   "message": "It will be shown when you signed-in."
 }
@@ -106,5 +110,45 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      window.onload = () => {
+        const sessionInfo = document.getElementById("session-info");
+        const peekabooBtn = document.getElementById("peekaboo-btn");
+
+        const apiVer = "v1";
+
+        function handleAxiosError(err) {
+          const { status, data } = err.response;
+          console.error(`code: ${status} / data: `, data);
+        }
+
+        axios
+          .get(`/oauth2/${apiVer}/myinfo`)
+          .then((res) => res.data)
+          .then((data) => {
+            if (data && Object.keys(data).length > 0) {
+              sessionInfo.innerText = JSON.stringify(data);
+            } else {
+              sessionInfo.innerHTML = JSON.stringify({
+                message: "It will be shown when you signed-in.",
+              });
+            }
+          })
+          .catch((err) => handleAxiosError(err));
+
+        peekabooBtn.onclick = (e) => {
+          axios
+            .post(`/foo/${apiVer}/click`)
+            .then((res) => res.data)
+            .then((data) => {
+              if (data.status) {
+                peekabooBtn.setAttribute("src", "./peekaboo.PNG");
+              }
+            })
+            .catch((err) => handleAxiosError(err));
+        };
+      };
+    </script>
   </body>
 </html>

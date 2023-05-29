@@ -243,7 +243,11 @@ function ensureLoggedIn(req, res, next) {
     ...getReqContext(req),
     error: E_NOT_AUTHORIZED,
   });
-  return res.redirect(failureRedirectUrl);
+  if (req.method === "GET") return res.redirect(failureRedirectUrl);
+  else {
+    res.status(StatusCodes.UNAUTHORIZED);
+    return res.send({ status: false });
+  }
 }
 
 /**
