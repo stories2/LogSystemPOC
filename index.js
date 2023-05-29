@@ -27,7 +27,6 @@ const HEADER_X_FEATURE_ID = "x-feature-id";
 const HEADER_X_REQUEST_ID = "x-request-id";
 const HEADER_USER_AGENT = "user-agent";
 
-const SUPPORT_PROVIDER = ["microsoft", "google"];
 const USER_PERMISSION_SCOPE = ["profile", "openid"];
 
 const logger = winston.createLogger({
@@ -176,10 +175,15 @@ app.get(
   })
 );
 
+/**
+ * The passport.authenticate method supports multiple provider.
+ * But if you use with google and microsoft, the TokenError will throw.
+ * TokenError: AADSTS9002313: Invalid request. Request is malformed or invalid.
+ */
 app.get(
-  `/oauth2/${apiVer}/authorize/callback`,
+  `/oauth2/${apiVer}/authorize/callback/google`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API001"),
-  passport.authenticate(SUPPORT_PROVIDER, {
+  passport.authenticate("google", {
     failureRedirect: failureRedirectUrl,
     successRedirect: successRedirectUrl,
   }),
@@ -187,11 +191,10 @@ app.get(
     res.send("ok");
   }
 );
-
-app.post(
-  `/oauth2/${apiVer}/authorize/callback`,
+app.get(
+  `/oauth2/${apiVer}/authorize/callback/microsoft`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API002"),
-  passport.authenticate(SUPPORT_PROVIDER, {
+  passport.authenticate("microsoft", {
     failureRedirect: failureRedirectUrl,
     successRedirect: successRedirectUrl,
   }),
