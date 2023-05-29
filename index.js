@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
+const { Strategy: MicrosoftStrategy } = require("passport-microsoft");
 const winston = require("winston");
 const { v4: uuidv4 } = require("uuid");
 const os = require("os");
@@ -26,7 +27,8 @@ const HEADER_X_FEATURE_ID = "x-feature-id";
 const HEADER_X_REQUEST_ID = "x-request-id";
 const HEADER_USER_AGENT = "user-agent";
 
-const SUPPORT_PROVIDER = ["google"];
+const SUPPORT_PROVIDER = ["google", "microsoft"];
+const USER_PERMISSION_SCOPE = ["profile"];
 
 const logger = winston.createLogger({
   level: "debug",
@@ -89,12 +91,29 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+/**
+ * Set up each provider's auth strategy
+ */
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: process.env.GOOGLE_CLIENT_CALLBACK_URL,
+    },
+    (accessToken, refreshToken, profile, cb) => {
+      cb(null, profile);
+    }
+  )
+);
+
+passport.use(
+  new MicrosoftStrategy(
+    {
+      clientID: process.env.MICROSOFT_CLIENT_ID,
+      clientSecret: process.env.MICROSOFT_CLIENT_SECRET,
+      callbackURL: process.env.MICROSOFT_CLIENT_CALLBACK_URL,
+      scope: USER_PERMISSION_SCOPE,
     },
     (accessToken, refreshToken, profile, cb) => {
       cb(null, profile);
@@ -136,10 +155,22 @@ app.use((req, res, next) => {
   next();
 });
 
+/**
+ * @summary Authenticate using google IdP
+ */
 app.get(
   `/oauth2/${apiVer}/google`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API006"),
-  passport.authenticate("google", { scope: ["profile"] })
+  passport.authenticate("google", { scope: USER_PERMISSION_SCOPE })
+);
+
+/**
+ * @summary Authenticate using microsoft Idp
+ */
+app.get(
+  `/oauth2/${apiVer}/microsoft`,
+  (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API007"),
+  passport.authenticate("microsoft", { prompt: "select_account" })
 );
 
 app.get(
