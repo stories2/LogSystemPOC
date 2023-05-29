@@ -209,6 +209,9 @@ app.get(
   }
 );
 
+/**
+ * @summary Get logged in detail info
+ */
 app.get(
   `/oauth2/${apiVer}/myinfo`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API003"),
@@ -238,6 +241,9 @@ function ensureLoggedIn(req, res, next) {
   return res.redirect(failureRedirectUrl);
 }
 
+/**
+ * @summary Expire user's session. If not logged-in user call this, it will redirect to `failureRedirectUrl`
+ */
 app.route(`/oauth2/${apiVer}/logout`).all(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API004"),
   ensureLoggedIn,
@@ -254,6 +260,9 @@ app.route(`/oauth2/${apiVer}/logout`).all(
   }
 );
 
+/**
+ * @summary Only logged in user can call this test endpoint
+ */
 app.post(
   `/foo/${apiVer}/click`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API005"),
@@ -264,6 +273,9 @@ app.post(
     })
 );
 
+/**
+ * @summary API crash test endpoint
+ */
 app.get(
   `/foo/${apiVer}/crash`,
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API008"),
@@ -272,6 +284,9 @@ app.get(
   }
 );
 
+/**
+ * @summary If the endpoint not defined, always return 404
+ */
 app.use(
   (req, res, next) => setFeatureIdToHeaderMiddleware(req, next, "API999"),
   (req, res, next) => {
