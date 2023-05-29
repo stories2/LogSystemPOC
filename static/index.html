@@ -19,7 +19,7 @@
         <div class="col-md-2 col-lg-4 col-12"></div>
         <div class="col-md-8 col-lg-4 col-12">
           <img
-            src="./idle.PNG"
+            src="./idle-min.PNG"
             style="max-width: 200px; width: 100%; height: auto"
             id="peekaboo-btn"
           />
@@ -91,7 +91,11 @@
           <div class="d-grid">
             <code>
               <pre
-                style="text-align: left; white-space: pre-wrap"
+                style="
+                  text-align: left;
+                  white-space: pre-wrap;
+                  word-break: break-all;
+                "
                 id="session-info"
               >
 {
@@ -143,7 +147,7 @@
             .then((res) => res.data)
             .then((data) => {
               if (data.status) {
-                peekabooBtn.setAttribute("src", "./peekaboo.PNG");
+                peekabooBtn.setAttribute("src", "./peekaboo-min.PNG");
               }
             })
             .catch((err) => handleAxiosError(err));
