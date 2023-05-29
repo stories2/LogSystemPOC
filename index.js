@@ -211,7 +211,7 @@ app.get(
     logger.debug({
       ...getReqContext(req),
     });
-    res.send(req.user);
+    res.send(req.user || {});
   }
 );
 
