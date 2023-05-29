@@ -64,6 +64,7 @@ function getReqContext(req) {
     featureId: req.headers[HEADER_X_FEATURE_ID],
     traceId: req.headers[HEADER_X_REQUEST_ID],
     userAgent: uaParser(req.headers[HEADER_USER_AGENT]),
+    connection: req.sessionID,
     session: req.user
       ? crypto.createHash("sha256").update(req.user.id).digest("hex")
       : undefined,
