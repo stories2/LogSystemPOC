@@ -1,6 +1,8 @@
 # LogSystemPOC
 
-![demo](./img/demo.png)
+<div style="text-align:center" align="center">
+<img src="./img/demo.png" width="300px" height="auto"/>
+</div>
 
 POC the log system
 
