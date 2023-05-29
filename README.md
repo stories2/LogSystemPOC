@@ -1,5 +1,7 @@
 # LogSystemPOC
 
+<img width="437" alt="스크린샷 2023-05-29 18 22 56" src="https://github.com/stories2/LogSystemPOC/assets/16532326/099f5fd3-9bdf-41b3-9814-ec91cd88476a">
+
 POC the log system
 
 # Objective
